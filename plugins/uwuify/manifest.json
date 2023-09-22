@@ -1,0 +1,14 @@
+{
+    "name": "uwuify",
+    "description": "uwuify your messages easily with a command!",
+    "authors": [
+        {
+            "name": "ECHO",
+            "id": "1154878913760219187"
+        }
+    ],
+    "main": "src/index.ts",
+    "vendetta": {
+        "icon": "ic_badge_staff"
+    }
+}

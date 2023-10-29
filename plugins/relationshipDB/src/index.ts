@@ -1,10 +1,13 @@
 import { commands } from "@vendetta";
 import { findByName,findByProps, findByStoreName } from "@vendetta/metro";
+import { ReactNative } from "@vendetta/metro/common";
+import { after } from "@vendetta/patcher";
 import { storage } from "@vendetta/plugin";
 const Avatars = findByProps("BOT_AVATARS");
 const { createBotMessage } = findByProps("createBotMessage");
 const { receiveMessage } = findByProps("receiveMessage");
 const OAuth2AuthorizeModal = findByName("OAuth2AuthorizeModal");
+const RowManager = findByName("RowManager");
 const Locale = findByProps("Messages");
 const UserStore = findByStoreName("UserStore");
 const SelectedChannelStore = findByStoreName("SelectedChannelStore");
@@ -81,6 +84,22 @@ export default {
             }
         }));
 
+        let bg = ReactNative.processColor("#831487");
+        let text = ReactNative.processColor("#ff91fa");
+        patches.push(after("generate", RowManager.prototype, ([row], {message}: {message: any}) => {
+            if (!message) return;
+            if (!message.embeds) message.embeds = [];
+            message.embeds.push({
+                type: 'text',
+                description: "gay",
+                messageSendError: '',
+                failureState: 0,
+                disableBackgroundColor: false,
+                bodyTextColor: text,
+                backgroundColor: bg
+            })
+
+        }))
         
     },
     onUnload: () => {

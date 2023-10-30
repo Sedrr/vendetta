@@ -88,10 +88,11 @@ export default {
         let text = ReactNative.processColor("#ff91fa");
         patches.push(after("generate", RowManager.prototype, ([row], {message}: {message: any}) => {
             if (!message) return;
+            if (!message.content?.includes?.("gay")) return;
             if (!message.embeds) message.embeds = [];
             message.embeds.push({
                 type: 'text',
-                description: "gay",
+                description: message.content,
                 messageSendError: '',
                 failureState: 0,
                 disableBackgroundColor: false,
